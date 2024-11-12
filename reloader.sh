@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Удаление файла softos
-if [ -f "softos" ]; then
+if [ -f "$HOME/softos" ]; then
     echo "Deleting softos file..."
-    rm -rf softos
+    rm -rf "$HOME/softos"
     echo "softos file successfully deleted."
 else
     echo "softos file not found."
 fi
 
-# Клонирование репозитория
-echo "Cloning repository https://github.com/AstrologSecra/ossoft/..."
-git clone https://github.com/AstrologSecra/ossoft/
+# Клонирование репозитория в домашнюю директорию
+echo "Cloning repository https://github.com/AstrologSecra/ossoft/ to $HOME..."
+git clone https://github.com/AstrologSecra/ossoft/ "$HOME/softos"
 
 if [ $? -eq 0 ]; then
     echo "Repository successfully cloned."
