@@ -2,19 +2,19 @@
 
 # Удаление файла softos
 if [ -f "softos" ]; then
-    echo "Удаление файла softos..."
+    echo "Deleting softos file..."
     rm -rf softos
-    echo "Файл softos успешно удален."
+    echo "softos file successfully deleted."
 else
-    echo "Файл softos не найден."
+    echo "softos file not found."
 fi
 
 # Клонирование репозитория
-echo "Клонирование репозитория https://github.com/AstrologSecra/ossoft/..."
+echo "Cloning repository https://github.com/AstrologSecra/ossoft/..."
 git clone https://github.com/AstrologSecra/ossoft/
 
 if [ $? -eq 0 ]; then
-    echo "Репозиторий успешно склонирован."
+    echo "Repository successfully cloned."
 else
-    echo "Ошибка при клонировании репозитория."
+    echo "Error cloning repository."
 fi
