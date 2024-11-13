@@ -9,8 +9,12 @@ SCRIPT_NAME=$(basename "$0")
 # Function to make all .sh scripts executable in a directory, excluding the script itself
 make_scripts_executable() {
     local dir=$1
-    echo "Making all .sh scripts executable in $dir..."
-    find "$dir" -type f -name "*.sh" ! -name "$SCRIPT_NAME" -exec chmod +x {} \; || { echo "Error making scripts executable in $dir"; exit 1; }
+    if [ -d "$dir" ]; then
+        echo "Making all .sh scripts executable in $dir..."
+        find "$dir" -type f -name "*.sh" ! -name "$SCRIPT_NAME" -exec chmod +x {} \; || { echo "Error making scripts executable in $dir"; exit 1; }
+    else
+        echo "Directory $dir does not exist. Skipping..."
+    fi
 }
 
 # Install dependencies
