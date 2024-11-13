@@ -1,15 +1,19 @@
 #!/bin/bash
 
 # Variables
-REPO_URL="https://github.com/AstrologSecra/ossoft.git"
 REPO_DIR="ossoft"
-
-# Clone the repository
-echo "Cloning the repository..."
-git clone "$REPO_URL" "$REPO_DIR" || { echo "Error cloning the repository"; exit 1; }
+SECURITY_DIR="$REPO_DIR/security"
+EDIT_SYSTEM_DIR="$REPO_DIR/edit_system"
 
 # Navigate to the repository directory
 cd "$REPO_DIR" || { echo "Error navigating to the repository directory"; exit 1; }
+
+# Function to make all .sh scripts executable in a directory
+make_scripts_executable() {
+    local dir=$1
+    echo "Making all .sh scripts executable in $dir..."
+    find "$dir" -type f -name "*.sh" -exec chmod +x {} \; || { echo "Error making scripts executable in $dir"; exit 1; }
+}
 
 # Install dependencies
 echo "Installing dependencies..."
@@ -60,5 +64,9 @@ if [ -f "go.mod" ]; then
     echo "go.mod found, installing Go dependencies..."
     go mod download || { echo "Error installing Go dependencies"; exit 1; }
 fi
+
+# Make all .sh scripts executable in the specified directories
+make_scripts_executable "$SECURITY_DIR"
+make_scripts_executable "$EDIT_SYSTEM_DIR"
 
 echo "Dependency installation completed successfully."
