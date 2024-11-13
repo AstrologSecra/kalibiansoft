@@ -4,15 +4,16 @@
 REPO_DIR="ossoft"
 SECURITY_DIR="$REPO_DIR/security"
 EDIT_SYSTEM_DIR="$REPO_DIR/edit_system"
+SCRIPT_NAME=$(basename "$0")
 
 # Navigate to the repository directory
 cd "$REPO_DIR" || { echo "Error navigating to the repository directory"; exit 1; }
 
-# Function to make all .sh scripts executable in a directory
+# Function to make all .sh scripts executable in a directory, excluding the script itself
 make_scripts_executable() {
     local dir=$1
     echo "Making all .sh scripts executable in $dir..."
-    find "$dir" -type f -name "*.sh" -exec chmod +x {} \; || { echo "Error making scripts executable in $dir"; exit 1; }
+    find "$dir" -type f -name "*.sh" ! -name "$SCRIPT_NAME" -exec chmod +x {} \; || { echo "Error making scripts executable in $dir"; exit 1; }
 }
 
 # Install dependencies
@@ -65,7 +66,7 @@ if [ -f "go.mod" ]; then
     go mod download || { echo "Error installing Go dependencies"; exit 1; }
 fi
 
-# Make all .sh scripts executable in the specified directories
+# Make all .sh scripts executable in the specified directories, excluding the script itself
 make_scripts_executable "$SECURITY_DIR"
 make_scripts_executable "$EDIT_SYSTEM_DIR"
 
