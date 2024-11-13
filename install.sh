@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-REPO_DIR="ossoft"
+REPO_DIR="kaltbiansoft"
 SECURITY_DIR="$REPO_DIR/security"
 EDIT_SYSTEM_DIR="$REPO_DIR/edit_system"
 SCRIPT_NAME=$(basename "$0")
