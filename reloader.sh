@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Удаление файла softos
-if [ -f "$HOME/softos" ]; then
-    echo "Deleting softos file..."
+# Удаление директории softos
+if [ -d "$HOME/softos" ]; then
+    echo "Deleting softos directory..."
     rm -rf "$HOME/softos"
-    echo "softos file successfully deleted."
+    echo "softos directory successfully deleted."
 else
-    echo "softos file not found."
+    echo "softos directory not found."
 fi
 
 # Клонирование репозитория в домашнюю директорию
