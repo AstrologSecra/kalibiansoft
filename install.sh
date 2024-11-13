@@ -6,8 +6,11 @@ SECURITY_DIR="$REPO_DIR/security"
 EDIT_SYSTEM_DIR="$REPO_DIR/edit_system"
 SCRIPT_NAME=$(basename "$0")
 
-# Navigate to the repository directory
-cd "$REPO_DIR" || { echo "Error navigating to the repository directory"; exit 1; }
+# Check if the script is executed from the correct directory
+if [ "$(basename "$PWD")" != "$REPO_DIR" ]; then
+    echo "Please run this script from the $REPO_DIR directory."
+    exit 1
+fi
 
 # Function to make all .sh scripts executable in a directory, excluding the script itself
 make_scripts_executable() {
