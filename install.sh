@@ -14,6 +14,13 @@ cd "$REPO_DIR" || { echo "Ошибка при переходе в директо
 # Установка зависимостей
 echo "Установка зависимостей..."
 
+# Проверка наличия файла apt-requirements.txt
+if [ -f "apt-requirements.txt" ]; then
+    echo "Обнаружен apt-requirements.txt, установка системных зависимостей..."
+    sudo apt-get update || { echo "Ошибка при обновлении списка пакетов"; exit 1; }
+    sudo apt-get install -y $(cat apt-requirements.txt) || { echo "Ошибка при установке системных зависимостей"; exit 1; }
+fi
+
 # Проверка наличия файла requirements.txt (для Python)
 if [ -f "requirements.txt" ]; then
     echo "Обнаружен requirements.txt, установка Python-зависимостей..."
