@@ -2,15 +2,14 @@
 
 # ASCII Art for KALIBIAN
 print_kalibian_art() {
-    echo "  _  __    _    _     ___ ____ ___    _    _   _ "
-    echo " | |/ /   / \  | |   |_ _| __ )_ _|  / \  | \ | |"
-    echo " | ' /   / _ \ | |    | ||  _ \| |  / _ \ |  \| |"
-    echo " | . \  / ___ \| |___ | || |_) | | / ___ \| |\  |"
-    echo " |_|\_\/_/   \_\_____|___|____/___/_/   \_\_| \_|"
+    cat << "EOF"
+  _  __    _    _     ___ ____ ___    _    _   _ 
+ | |/ /   / \  | |   |_ _| __ )_ _|  / \  | \ | |
+ | ' /   / _ \ | |    | ||  _ \| |  / _ \ |  \| |
+ | . \  / ___ \| |___ | || |_) | | / ___ \| |\  |
+ |_|\_\/_/   \_\_____|___|____/___/_/   \_\_| \_|
+EOF
 }
-
-# Print KALIBIAN ASCII Art
-print_kalibian_art
 
 # Add the function call to the terminal configuration file
 if [ -f ~/.bashrc ]; then
