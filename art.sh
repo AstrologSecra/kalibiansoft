@@ -11,3 +11,14 @@ print_kalibian_art() {
 
 # Print KALIBIAN ASCII Art
 print_kalibian_art
+
+# Add the function call to the terminal configuration file
+if [ -f ~/.bashrc ]; then
+    echo "print_kalibian_art" >> ~/.bashrc
+    echo "Added print_kalibian_art to ~/.bashrc"
+fi
+
+if [ -f ~/.zshrc ]; then
+    echo "print_kalibian_art" >> ~/.zshrc
+    echo "Added print_kalibian_art to ~/.zshrc"
+fi
