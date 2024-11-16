@@ -48,6 +48,42 @@ decrypt_directory() {
     echo "Директория расшифрована: $output_dir"
 }
 
+# Функция для установки зависимостей с использованием apt
+install_dependencies_apt() {
+    echo "Установка зависимостей (gnupg)..."
+    sudo apt-get update || { echo "Ошибка обновления списка пакетов"; exit 1; }
+    sudo apt-get install -y gnupg || { echo "Ошибка установки зависимостей"; exit 1; }
+}
+
+# Функция для установки зависимостей с использованием pacman
+install_dependencies_pacman() {
+    echo "Установка зависимостей (gnupg)..."
+    sudo pacman -Syu --noconfirm || { echo "Ошибка обновления списка пакетов"; exit 1; }
+    sudo pacman -S --noconfirm gnupg || { echo "Ошибка установки зависимостей"; exit 1; }
+}
+
+# Функция для выбора пакетного менеджера
+choose_package_manager() {
+    local choice=$(zenity --list --title="Выбор пакетного менеджера" --text="Выберите пакетный менеджер:" --column="Пакетный менеджер" "apt" "pacman")
+
+    case $choice in
+        "apt")
+            install_dependencies_apt
+            ;;
+        "pacman")
+            install_dependencies_pacman
+            ;;
+        *)
+            zenity --error --title="Ошибка" --text="Неверный выбор. Выход."
+            exit 1
+            ;;
+    esac
+}
+
+# Установка зависимостей
+echo "Установка зависимостей..."
+choose_package_manager
+
 # Проверка пароля
 check_password
 
