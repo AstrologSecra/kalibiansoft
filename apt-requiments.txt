@@ -1,1 +1,1 @@
-sudo apt install zenity -y
+sudo apt install zenity xdotool curl -y
