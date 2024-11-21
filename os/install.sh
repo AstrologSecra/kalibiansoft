@@ -2,8 +2,8 @@
 
 # Список файлов с расширением .sh, которые нужно выполнить
 FILES_TO_EXECUTE=(
-    "wallaper_change.sh"
-    "kdesktop.sh"
+"kdesktop.sh"
+"wallaper_change.sh"
 )
 
 # Перебор всех файлов в списке
