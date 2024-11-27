@@ -12,6 +12,7 @@ ICON_PATH="kresmon.ico"
 mkdir -p ./deb-package/DEBIAN
 mkdir -p ./deb-package/usr/local/bin
 mkdir -p ./deb-package/usr/share/icons/hicolor/48x48/apps
+mkdir -p ./deb-package/usr/share/applications
 
 # Копирование бинарного файла в пакет
 go build -o ./deb-package/usr/local/bin/kresmon main.go
@@ -27,6 +28,18 @@ Architecture: $ARCH
 Maintainer: $MAINTAINER
 Description: $DESCRIPTION
 Icon: /usr/share/icons/hicolor/48x48/apps/kresmon.ico
+EOF
+
+# Создание файла .desktop
+cat <<EOF > ./deb-package/usr/share/applications/kresmon.desktop
+[Desktop Entry]
+Name=Kresmon
+Comment=A simple Go application to monitor CPU usage and top processes.
+Exec=/usr/local/bin/kresmon
+Icon=/usr/share/icons/hicolor/48x48/apps/kresmon.ico
+Terminal=true
+Type=Application
+Categories=Utility;System;
 EOF
 
 # Сборка пакета
