@@ -4,6 +4,7 @@
 FILES_TO_EXECUTE=(
 "kdesktop.sh"
 "wallaper_change.sh"
+"sakura.sh"
 )
 
 # Перебор всех файлов в списке
